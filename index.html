@@ -1,377 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathrubhumi Enterprises | We build to admire</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
                     colors: {
                         navy: '#0f172a',
+                        bordergray: '#e2e8f0',
                         lightgrid: '#f8fafc',
-                        bordergray: '#e2e8f0'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    
     <style>
-        /* Architectural Vertical Grid Lines */
         body {
             background-color: #ffffff;
-            background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px);
-            background-size: 10vw 100%;
-            background-attachment: fixed;
             color: #0f172a;
-            position: relative;
         }
-
-        /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
-
-        /* Slide Transition for Hero */
-        .slide-fade {
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Architectural Grid Background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #f8fafc 1px, transparent 1px),
+                              linear-gradient(to bottom, #f8fafc 1px, transparent 1px);
         }
-
-        /* Custom minimal inputs */
+        /* Minimalist Input Styles */
         .minimal-input {
             border: 1px solid #e2e8f0;
-            background: #ffffff;
-            transition: all 0.3s ease;
+            background-color: #ffffff;
+            transition: all 0.2s ease;
         }
         .minimal-input:focus {
             outline: none;
             border-color: #0f172a;
-            box-shadow: 0 0 0 1px #0f172a;
+            box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1);
         }
-
-        /* Lightbox overlay */
-        #lightbox {
-            backdrop-filter: blur(8px);
-            background-color: rgba(15, 23, 42, 0.9);
-        }
-        
-        /* Hide scrollbar for gallery but allow scroll */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* Hide Scrollbar for carousels if needed */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col">
+<body class="bg-grid antialiased relative flex flex-col min-h-screen">
+
+    <div id="imageLightbox" class="fixed inset-0 z-50 hidden bg-navy/95 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gray-300 text-4xl leading-none">&times;</button>
+        <img id="lightboxImg" src="" class="max-w-full max-h-full object-contain rounded-sm shadow-2xl" alt="Zoomed Project Image">
+    </div>
 
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-bordergray">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <!-- Minimalist Typographic Logo Replaced with Brand Logo -->
-                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Mathrubhumi Enterprises Logo" class="h-12 w-auto object-contain rounded-sm">
+            <div class="flex items-center gap-4">
+                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Mathrubhumi Enterprises Logo" class="h-12 w-auto object-contain rounded-sm shadow-sm">
                 <div>
-                    <h1 class="font-bold text-lg leading-none tracking-tight text-navy">Mathrubhumi<br>Enterprises</h1>
+                    <h1 class="font-extrabold text-xl leading-none tracking-tight text-navy uppercase">Mathrubhumi<br>Enterprises</h1>
                 </div>
             </div>
-            
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#services" class="hover:text-gray-500 transition-colors">Services</a>
-                <a href="#projects" class="hover:text-gray-500 transition-colors">Projects</a>
-                <div class="flex flex-col text-right ml-4">
-                    <span class="text-xs text-gray-500">Call Us</span>
-                    <a href="tel:8788138586" class="font-semibold">8788138586</a>
-                </div>
-                <a href="#quote" class="bg-navy text-white px-6 py-2.5 hover:bg-gray-800 transition-colors">
-                    Request Estimate
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase text-gray-600">
+                <a href="#projects" class="hover:text-navy transition-colors">Projects</a>
+                <a href="#services" class="hover:text-navy transition-colors">Services</a>
+                <a href="#quote" class="text-navy flex items-center gap-2">
+                    Request Estimate <span class="text-lg">→</span>
                 </a>
             </nav>
         </div>
     </header>
 
     <main class="flex-grow">
-        <section class="relative max-w-7xl mx-auto px-6 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16">
-            <!-- Left Text Content -->
-            <div class="w-full lg:w-1/2 z-10 bg-white/80 p-4 lg:p-0 backdrop-blur-sm lg:backdrop-blur-none">
-                <p class="text-sm font-bold tracking-widest uppercase text-gray-500 mb-4">Engineering & Fabrication</p>
-                <h2 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6">
-                    We build <br>
-                    <span class="text-gray-400">to admire.</span>
+        <section class="py-20 md:py-32 border-b border-bordergray">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col items-start">
+                <span class="text-sm font-bold tracking-widest uppercase mb-4 text-gray-500">Structural Engineering & Fabrication</span>
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 text-navy max-w-4xl leading-[1.1]">
+                    We build to admire.
                 </h2>
-                <p class="text-xl text-gray-600 mb-8 max-w-md font-light">
-                    Precision MS steel structures and industrial fabrication. Built on trust with <strong class="text-navy font-semibold">zero hidden costs.</strong>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mb-10 font-medium">
+                    Delivering premium industrial shedding, MS steel structures, and fabrication with absolute trust and zero hidden costs.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#quote" class="bg-navy text-white text-center px-8 py-4 font-medium hover:bg-gray-800 transition-colors">
-                        Start Your Project
-                    </a>
-                    <a href="#projects" class="border border-bordergray bg-white text-center px-8 py-4 font-medium hover:border-navy transition-colors">
-                        View Ongoing Work
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right Image Slideshow Container -->
-            <div class="w-full lg:w-1/2 relative h-[400px] lg:h-[600px] bg-lightgrid border border-bordergray overflow-hidden cursor-pointer" onclick="openLightbox(document.getElementById('heroSlide').src)">
-                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-semibold tracking-wide border border-bordergray z-20">
-                    Safdarjung Project
-                </div>
-                <img id="heroSlide" src="https://i.imgur.com/7uYCIAy.jpeg" alt="Safdarjung Project Structure" class="w-full h-full object-cover slide-fade absolute inset-0">
-                
-                <!-- Slideshow Controls -->
-                <div class="absolute bottom-4 right-4 flex gap-2 z-20">
-                    <button onclick="event.stopPropagation(); prevSlide()" class="w-10 h-10 bg-white border border-bordergray flex items-center justify-center hover:bg-lightgrid transition-colors">
-                        &#8592;
-                    </button>
-                    <button onclick="event.stopPropagation(); nextSlide()" class="w-10 h-10 bg-white border border-bordergray flex items-center justify-center hover:bg-lightgrid transition-colors">
-                        &#8594;
-                    </button>
-                </div>
+                <a href="#quote" class="bg-navy text-white px-8 py-4 font-bold tracking-wide uppercase hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl rounded-sm">
+                    Start Your Project
+                </a>
             </div>
         </section>
 
-        <section id="services" class="border-t border-bordergray bg-white relative">
-            <div class="max-w-7xl mx-auto px-6 py-24">
+        <section id="projects" class="py-24 bg-white/50 border-b border-bordergray">
+            <div class="max-w-7xl mx-auto px-6">
                 <div class="mb-16">
-                    <h3 class="text-3xl font-bold tracking-tight mb-4">Core Services</h3>
-                    <p class="text-gray-500 max-w-xl">We specialize in robust, scalable, and meticulously engineered structures for industrial and commercial applications.</p>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">Active Sites & Portfolio</h3>
+                    <p class="text-gray-600 font-medium max-w-2xl">A transparent look at our ongoing structural developments.</p>
+                </div>
+
+                <!-- Thermal Power Odisha Project -->
+                <div class="mb-20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <h4 class="text-2xl font-bold tracking-tight">Thermal Power, Odisha</h4>
+                        <span class="text-xs font-bold uppercase tracking-wider bg-green-100 text-green-800 px-3 py-1 rounded-sm border border-green-200">Ongoing</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <img src="https://i.imgur.com/SFmgpE4.jpeg" onclick="openLightbox(this.src)" class="w-full h-48 md:h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Thermal Power Odisha 1">
+                        <img src="https://i.imgur.com/OFfXQG3.jpeg" onclick="openLightbox(this.src)" class="w-full h-48 md:h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Thermal Power Odisha 2">
+                        <img src="https://i.imgur.com/Clxy95H.jpeg" onclick="openLightbox(this.src)" class="w-full h-48 md:h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Thermal Power Odisha 3">
+                        <img src="https://i.imgur.com/9vh9NOb.jpeg" onclick="openLightbox(this.src)" class="w-full h-48 md:h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Thermal Power Odisha 4">
+                    </div>
+                </div>
+
+                <!-- Safdarjung Railway Station Project -->
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <h4 class="text-2xl font-bold tracking-tight">Safdarjung Railway Station</h4>
+                        <span class="text-xs font-bold uppercase tracking-wider bg-green-100 text-green-800 px-3 py-1 rounded-sm border border-green-200">Ongoing</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <img src="https://i.imgur.com/7uYCIAy.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 1">
+                        <img src="https://i.imgur.com/NcoYkDs.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 2">
+                        <img src="https://i.imgur.com/H7ADlCI.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 3">
+                        <img src="https://i.imgur.com/1uKI9UI.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 4">
+                        <img src="https://i.imgur.com/YzIWjMU.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 5">
+                        <img src="https://i.imgur.com/GaXqmjN.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 6">
+                        <img src="https://i.imgur.com/uMZp6ZF.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 7">
+                        <img src="https://i.imgur.com/eQdUxS6.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 8">
+                        <img src="https://i.imgur.com/6JizYtv.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 9">
+                        <img src="https://i.imgur.com/3mgi0Hx.jpeg" onclick="openLightbox(this.src)" class="w-full h-32 md:h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity border border-bordergray rounded-sm shadow-sm" alt="Safdarjung 10">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-24 border-b border-bordergray">
+            <div class="max-w-7xl mx-auto px-6">
+                <h3 class="text-3xl font-extrabold mb-12 tracking-tight">Core Competencies</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="p-8 border border-bordergray bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-4">🏗️</div>
+                        <h4 class="font-bold text-lg mb-2">MS Steel Structure</h4>
+                        <p class="text-sm text-gray-500">Heavy-duty mild steel frameworks engineered for durability.</p>
+                    </div>
+                    <div class="p-8 border border-bordergray bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-4">⚙️</div>
+                        <h4 class="font-bold text-lg mb-2">Fabrication</h4>
+                        <p class="text-sm text-gray-500">Precision cutting, bending, and assembling of metal structures.</p>
+                    </div>
+                    <div class="p-8 border border-bordergray bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-4">🏭</div>
+                        <h4 class="font-bold text-lg mb-2">Industrial Shedding</h4>
+                        <p class="text-sm text-gray-500">Large-scale weatherproof roofing and enclosures for factories.</p>
+                    </div>
+                    <div class="p-8 border border-bordergray bg-white rounded-sm shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-3xl mb-4">📐</div>
+                        <h4 class="font-bold text-lg mb-2">PEP Structure</h4>
+                        <p class="text-sm text-gray-500">Pre-engineered primary framing systems for rapid deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" class="py-24 bg-lightgrid">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="mb-10 text-center">
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">Request an Estimate</h3>
+                    <p class="text-gray-600">Provide your project details below. We will redirect you to your email client with a formatted request ready to send.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-bordergray bg-lightgrid">
-                    <!-- Service 1 -->
-                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
-                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
-                            <span class="text-xl font-bold text-gray-400">01</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3">MS Steel Structure</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed">High-grade mild steel structural frameworks tailored for heavy-duty load bearing and long-term durability.</p>
-                    </div>
-                    <!-- Service 2 -->
-                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
-                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
-                            <span class="text-xl font-bold text-gray-400">02</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3">Fabrication</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed">Precision cutting, bending, and assembling of metal components to exact architectural specifications.</p>
-                    </div>
-                    <!-- Service 3 -->
-                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
-                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
-                            <span class="text-xl font-bold text-gray-400">03</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3">Industrial Shedding</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed">Large-scale industrial sheds designed for optimal space utilization, ventilation, and structural integrity.</p>
-                    </div>
-                    <!-- Service 4 -->
-                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
-                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
-                            <span class="text-xl font-bold text-gray-400">04</span>
-                        </div>
-                        <h4 class="text-xl font-bold mb-3">PEP Structure</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed">Pre-engineered PEB/PEP steel structures offering rapid installation, cost-efficiency, and flexibility.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="border-t border-bordergray bg-lightgrid relative">
-            <div class="max-w-7xl mx-auto px-6 py-24">
-                <div class="flex flex-col lg:flex-row justify-between items-end mb-12 gap-6">
-                    <div>
-                        <h3 class="text-3xl font-bold tracking-tight mb-2">Safdarjung Railway Station</h3>
-                        <p class="text-gray-500">Current Ongoing Project Portfolio</p>
-                    </div>
-                    <div class="bg-white border border-bordergray px-4 py-2 text-sm font-medium">
-                        Status: <span class="text-green-600">Active</span>
-                    </div>
-                </div>
-
-                <!-- Horizontal Scroll Gallery -->
-                <div class="flex overflow-x-auto gap-4 pb-8 no-scrollbar snap-x">
-                    <!-- Gallery Images injected via JS below, but here are the first few hardcoded for fast loading -->
-                    <img src="https://i.imgur.com/7uYCIAy.jpeg" alt="Safdarjung Site 1" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/NcoYkDs.jpeg" alt="Safdarjung Site 2" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/H7ADlCI.jpeg" alt="Safdarjung Site 3" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/1uKI9UI.jpeg" alt="Safdarjung Site 4" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/YzIWjMU.jpeg" alt="Safdarjung Site 5" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/GaXqmjN.jpeg" alt="Safdarjung Site 6" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/uMZp6ZF.jpeg" alt="Safdarjung Site 7" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/eQdUxS6.jpeg" alt="Safdarjung Site 8" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/6JizYtv.jpeg" alt="Safdarjung Site 9" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/3mgi0Hx.jpeg" alt="Safdarjung Site 10" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                </div>
-            </div>
-        </section>
-
-        <section id="quote" class="border-t border-bordergray bg-white relative">
-            <div class="max-w-4xl mx-auto px-6 py-24">
-                <div class="text-center mb-12">
-                    <h3 class="text-3xl font-bold tracking-tight mb-4">Request an Estimate</h3>
-                    <p class="text-gray-500">Provide your project details below. We guarantee transparent pricing with zero hidden costs.</p>
-                </div>
-
-                <form id="quoteForm" class="bg-lightgrid p-8 lg:p-12 border border-bordergray">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-semibold mb-2 text-navy">Full Name</label>
-                            <input type="text" id="clientName" required class="w-full p-4 minimal-input" placeholder="e.g. John Doe">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold mb-2 text-navy">Phone Number</label>
-                            <input type="tel" id="clientPhone" required pattern="[0-9]{10}" title="Please enter exactly 10 digits" class="w-full p-4 minimal-input" placeholder="e.g. 9876543210">
-                        </div>
-                    </div>
+                <form id="quoteForm" class="bg-white p-8 md:p-12 border border-bordergray shadow-xl rounded-sm">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label class="block text-sm font-semibold mb-2 text-navy">Email Address</label>
-                            <input type="email" id="clientEmail" required class="w-full p-4 minimal-input" placeholder="name@company.com">
+                            <label class="block text-sm font-bold mb-2 text-navy uppercase tracking-wide">Full Name</label>
+                            <!-- UPDATED PLACEHOLDER HERE -->
+                            <input type="text" id="clientName" required class="w-full p-4 minimal-input text-lg rounded-sm" placeholder="e.g. Mukesh Ambani">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-2 text-navy">Location</label>
+                            <label class="block text-sm font-bold mb-2 text-navy uppercase tracking-wide">Phone Number</label>
+                            <input type="tel" id="clientPhone" required pattern="[0-9]{10}" title="Please enter exactly 10 digits" class="w-full p-4 minimal-input text-lg rounded-sm" placeholder="e.g. 9876543210">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-navy uppercase tracking-wide">Email Address</label>
+                            <input type="email" id="clientEmail" required class="w-full p-4 minimal-input text-lg rounded-sm" placeholder="name@company.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2 text-navy uppercase tracking-wide">Site Location</label>
                             <div class="flex gap-2">
-                                <input type="text" id="clientLocation" class="w-full p-4 minimal-input" placeholder="City or GPS Coordinates">
-                                <button type="button" onclick="fetchLocation()" class="bg-lightgrid px-4 text-xl hover:bg-gray-200 transition-colors border border-bordergray" title="Fetch current location">
+                                <input type="text" id="clientLocation" class="w-full p-4 minimal-input text-lg rounded-sm" placeholder="City or GPS Coordinates">
+                                <button type="button" onclick="fetchLocation()" class="bg-lightgrid px-5 text-xl hover:bg-gray-200 transition-colors border border-bordergray rounded-sm flex items-center justify-center" title="Fetch current location">
                                     📍
                                 </button>
                             </div>
-                            <p id="locationStatus" class="text-xs text-gray-500 mt-1 hidden"></p>
+                            <p id="locationStatus" class="text-xs font-medium mt-2 hidden"></p>
                         </div>
                     </div>
 
-                    <div class="mb-6 border border-bordergray p-6 bg-white">
+                    <div class="mb-8 border border-bordergray p-6 bg-lightgrid/50 rounded-sm">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
-                            <label class="block text-sm font-semibold text-navy">Services Required & Quantity</label>
-                            <button type="button" onclick="addServiceRow()" class="text-xs font-bold bg-navy text-white px-4 py-2 hover:bg-gray-800 transition-colors">+ Add Service</button>
+                            <label class="block text-sm font-bold text-navy uppercase tracking-wide">Services Required & Quantity</label>
+                            <button type="button" onclick="addServiceRow()" class="text-xs font-bold bg-navy text-white px-4 py-2 hover:bg-gray-800 transition-colors rounded-sm uppercase tracking-wider">+ Add Service</button>
                         </div>
                         <div id="servicesContainer" class="space-y-3">
                             <!-- Initial Service Row -->
                             <div class="flex gap-2 service-row">
-                                <input type="text" required class="w-3/5 p-3 minimal-input service-name" placeholder="Service (e.g. MS Steel Structure)">
-                                <input type="text" required class="w-2/5 p-3 minimal-input service-qty" placeholder="Qty/Unit (e.g. 50 tons)">
-                                <button type="button" onclick="if(document.querySelectorAll('.service-row').length > 1) this.parentElement.remove()" class="px-3 text-red-500 font-bold hover:bg-red-50 transition-colors text-xl">&times;</button>
+                                <input type="text" required class="w-3/5 p-4 minimal-input service-name text-md rounded-sm" placeholder="Service (e.g. MS Steel Structure)">
+                                <input type="text" required class="w-2/5 p-4 minimal-input service-qty text-md rounded-sm" placeholder="Qty/Unit (e.g. 50 tons)">
+                                <button type="button" onclick="if(document.querySelectorAll('.service-row').length > 1) this.parentElement.remove()" class="px-4 text-gray-400 hover:text-red-500 font-bold bg-white border border-bordergray hover:border-red-200 hover:bg-red-50 transition-colors text-xl rounded-sm">&times;</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mb-8">
-                        <label class="block text-sm font-semibold mb-2 text-navy">Project Description</label>
-                        <textarea id="clientMessage" rows="4" required class="w-full p-4 minimal-input" placeholder="Tell us about your project scale, specific requirements, and timeline..."></textarea>
+                    <div class="mb-10">
+                        <label class="block text-sm font-bold mb-2 text-navy uppercase tracking-wide">Project Description</label>
+                        <textarea id="clientMessage" rows="5" required class="w-full p-4 minimal-input text-lg rounded-sm" placeholder="Tell us about your project scale, specific requirements, deadlines..."></textarea>
                     </div>
 
-                    <button type="submit" class="w-full bg-navy text-white font-semibold p-4 hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                        Submit Request Form
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <button type="submit" class="w-full bg-navy text-white font-extrabold tracking-widest uppercase p-5 hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl rounded-sm flex items-center justify-center gap-3 text-lg">
+                        Prepare Email Request
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                     
-                    <div id="formSuccessMsg" class="hidden mt-4 p-4 bg-green-50 text-green-800 border border-green-200 text-sm font-medium text-center">
+                    <div id="formSuccessMsg" class="hidden mt-6 p-4 bg-green-50 text-green-800 border border-green-200 text-sm font-bold text-center rounded-sm uppercase tracking-wide">
                         Request prepared! Opening your email client...
                     </div>
                 </form>
             </div>
         </section>
-
     </main>
 
-    <footer class="bg-white border-t border-bordergray py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Logo" class="h-8 w-auto object-contain rounded-sm">
-                <span class="font-bold tracking-tight">Mathrubhumi Enterprises</span>
+    <footer class="bg-white border-t border-bordergray py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-4">
+                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Logo" class="h-10 w-auto object-contain rounded-sm shadow-sm">
+                <span class="font-extrabold tracking-tight uppercase text-lg">Mathrubhumi Enterprises</span>
             </div>
-            <div class="text-sm text-gray-500 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-                <span>Email: Mathrubhumie@gmail.com</span>
-                <span>Phone: 8788138586</span>
-            </div>
-            <div class="text-xs text-gray-400">
-                &copy; 2026 Mathrubhumi Enterprises.
+            <div class="text-sm font-medium text-gray-500 flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+                <a href="mailto:Mathrubhumie@gmail.com" class="hover:text-navy transition-colors flex items-center gap-2">
+                    ✉️ Mathrubhumie@gmail.com
+                </a>
+                <a href="tel:8788138586" class="hover:text-navy transition-colors flex items-center gap-2">
+                    📞 +91 8788138586
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
-        <button class="absolute top-6 right-6 text-white text-4xl hover:text-gray-300">&times;</button>
-        <img id="lightboxImg" src="" alt="Zoomed view" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-gray-700" onclick="event.stopPropagation()">
-    </div>
-
     <script>
-        // --- 1. SLIDESHOW LOGIC ---
-        const images = [
-            'https://i.imgur.com/7uYCIAy.jpeg',
-            'https://i.imgur.com/NcoYkDs.jpeg',
-            'https://i.imgur.com/H7ADlCI.jpeg',
-            'https://i.imgur.com/1uKI9UI.jpeg',
-            'https://i.imgur.com/YzIWjMU.jpeg',
-            'https://i.imgur.com/GaXqmjN.jpeg',
-            'https://i.imgur.com/uMZp6ZF.jpeg',
-            'https://i.imgur.com/eQdUxS6.jpeg',
-            'https://i.imgur.com/6JizYtv.jpeg',
-            'https://i.imgur.com/3mgi0Hx.jpeg'
-        ];
-        
-        let currentSlideIndex = 0;
-        const heroSlide = document.getElementById('heroSlide');
-        let slideInterval;
-
-        function updateSlide() {
-            heroSlide.style.opacity = 0;
-            setTimeout(() => {
-                heroSlide.src = images[currentSlideIndex];
-                heroSlide.style.opacity = 1;
-            }, 300); // Wait for fade out
-        }
-
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % images.length;
-            updateSlide();
-            resetInterval();
-        }
-
-        function prevSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + images.length) % images.length;
-            updateSlide();
-            resetInterval();
-        }
-
-        function startInterval() {
-            slideInterval = setInterval(nextSlide, 4000); // 4 seconds
-        }
-
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-
-        // Initialize slideshow
-        startInterval();
-
-
-        // --- 2. LIGHTBOX LOGIC ---
-        const lightbox = document.getElementById('lightbox');
+        // --- 1. LIGHTBOX LOGIC ---
+        const lightbox = document.getElementById('imageLightbox');
         const lightboxImg = document.getElementById('lightboxImg');
 
         function openLightbox(src) {
             lightboxImg.src = src;
             lightbox.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // prevent scrolling
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightbox.classList.add('opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
         }
 
         function closeLightbox() {
-            lightbox.classList.add('hidden');
+            lightbox.classList.remove('opacity-100');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300); // match transition duration
             document.body.style.overflow = 'auto';
-            lightboxImg.src = '';
         }
 
         // Close on escape key
@@ -381,54 +286,60 @@
             }
         });
 
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
 
-        // --- 3. QUOTE FORM, LOCATION & EMAIL LOGIC ---
-        
-        // Location Fetcher
+
+        // --- 2. LOCATION FETCHER LOGIC ---
         function fetchLocation() {
             const locInput = document.getElementById('clientLocation');
             const locStatus = document.getElementById('locationStatus');
             
             if (!navigator.geolocation) {
                 locStatus.textContent = "Geolocation is not supported by your browser.";
-                locStatus.classList.remove('hidden', 'text-green-600');
-                locStatus.classList.add('text-red-500');
+                locStatus.classList.remove('hidden', 'text-green-600', 'text-gray-500');
+                locStatus.classList.add('text-red-500', 'block');
                 return;
             }
 
-            locStatus.textContent = "Fetching location...";
-            locStatus.classList.remove('hidden', 'text-red-500');
-            locStatus.classList.add('text-gray-500');
+            locStatus.textContent = "Fetching GPS coordinates...";
+            locStatus.classList.remove('hidden', 'text-red-500', 'text-green-600');
+            locStatus.classList.add('text-gray-500', 'block');
 
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
                     locInput.value = `Lat: ${lat.toFixed(5)}, Lon: ${lon.toFixed(5)}`;
-                    locStatus.textContent = "Location successfully captured!";
+                    locStatus.textContent = "✓ Location successfully captured!";
                     locStatus.classList.replace('text-gray-500', 'text-green-600');
                 },
                 (error) => {
-                    locStatus.textContent = "Unable to retrieve location. Please type it manually.";
+                    locStatus.textContent = "Unable to retrieve location. Please type your city/address manually.";
                     locStatus.classList.replace('text-gray-500', 'text-red-500');
-                }
+                },
+                { timeout: 10000 }
             );
         }
 
-        // Dynamic Service Rows
+        // --- 3. DYNAMIC SERVICES LOGIC ---
         function addServiceRow() {
             const container = document.getElementById('servicesContainer');
             const row = document.createElement('div');
-            row.className = 'flex gap-2 service-row';
+            row.className = 'flex gap-2 service-row mb-2';
             row.innerHTML = `
-                <input type="text" required class="w-3/5 p-3 minimal-input service-name" placeholder="Service (e.g. Fabrication)">
-                <input type="text" required class="w-2/5 p-3 minimal-input service-qty" placeholder="Qty/Unit">
-                <button type="button" onclick="this.parentElement.remove()" class="px-3 text-red-500 font-bold hover:bg-red-50 transition-colors text-xl">&times;</button>
+                <input type="text" required class="w-3/5 p-4 minimal-input service-name text-md rounded-sm" placeholder="Service (e.g. Fabrication)">
+                <input type="text" required class="w-2/5 p-4 minimal-input service-qty text-md rounded-sm" placeholder="Qty/Unit">
+                <button type="button" onclick="this.parentElement.remove()" class="px-4 text-gray-400 hover:text-red-500 font-bold bg-white border border-bordergray hover:border-red-200 hover:bg-red-50 transition-colors text-xl rounded-sm">&times;</button>
             `;
             container.appendChild(row);
         }
 
-        // Form Submission to Email
+        // --- 4. FORM TO EMAIL REDIRECT LOGIC ---
         const quoteForm = document.getElementById('quoteForm');
         const formSuccessMsg = document.getElementById('formSuccessMsg');
         
@@ -472,16 +383,14 @@ ${message}`;
 
             const body = encodeURIComponent(bodyText);
             
-            // Open user's default email client
+            // Open user's default email client with prefilled data
             window.location.href = `mailto:Mathrubhumie@gmail.com?subject=${subject}&body=${body}`;
             
             // Show success briefly
             formSuccessMsg.classList.remove('hidden');
             setTimeout(() => {
                 formSuccessMsg.classList.add('hidden');
-                // Optional: reset form
-                // quoteForm.reset(); 
-            }, 4000);
+            }, 5000);
         });
 
     </script>
