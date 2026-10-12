@@ -72,6 +72,29 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Lenis smooth-scroll recommended styles */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        /* Split-text chars (React-Bits SplitText style) */
+        .split-char { display: inline-block; will-change: transform, opacity; }
+
+        /* Spotlight cards (React-Bits SpotlightCard style) */
+        .spotlight { position: relative; }
+        .spotlight::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(15, 23, 42, 0.09), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .spotlight:hover::before { opacity: 1; }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -93,7 +116,7 @@
                     <span class="text-xs text-gray-500">Call Us</span>
                     <a href="tel:8788138586" class="font-semibold">8788138586</a>
                 </div>
-                <a href="#quote" class="bg-navy text-white px-6 py-2.5 hover:bg-gray-800 transition-colors">
+                <a href="#quote" data-magnet class="bg-navy text-white px-6 py-2.5 hover:bg-gray-800 transition-colors">
                     Request Estimate
                 </a>
             </nav>
@@ -105,7 +128,7 @@
             <!-- Left Text Content -->
             <div class="w-full lg:w-1/2 z-10 bg-white/80 p-4 lg:p-0 backdrop-blur-sm lg:backdrop-blur-none">
                 <p class="text-sm font-bold tracking-widest uppercase text-gray-500 mb-4">Engineering & Fabrication</p>
-                <h2 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6">
+                <h2 data-split class="text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6">
                     We build <br>
                     <span class="text-gray-400">to admire.</span>
                 </h2>
@@ -113,10 +136,10 @@
                     Precision MS steel structures and industrial fabrication. Built on trust with <strong class="text-navy font-semibold">zero hidden costs.</strong>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#quote" class="bg-navy text-white text-center px-8 py-4 font-medium hover:bg-gray-800 transition-colors">
+                    <a href="#quote" data-magnet class="bg-navy text-white text-center px-8 py-4 font-medium hover:bg-gray-800 transition-colors">
                         Start Your Project
                     </a>
-                    <a href="#projects" class="border border-bordergray bg-white text-center px-8 py-4 font-medium hover:border-navy transition-colors">
+                    <a href="#projects" data-magnet class="border border-bordergray bg-white text-center px-8 py-4 font-medium hover:border-navy transition-colors">
                         View Ongoing Work
                     </a>
                 </div>
@@ -306,6 +329,11 @@
         <img id="lightboxImg" src="" alt="Zoomed view" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-gray-700" onclick="event.stopPropagation()">
     </div>
 
+    <!-- Motion libraries: GSAP + ScrollTrigger + Lenis (CDN, pinned) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+
     <script>
         // --- 1. SLIDESHOW LOGIC ---
         const images = [
@@ -484,6 +512,150 @@ ${message}`;
             }, 4000);
         });
 
+    </script>
+
+    <script>
+        // --- 4. MOTION: Lenis smooth scroll + GSAP reveals + React-Bits-style effects ---
+        // Graceful by design: if a CDN fails or the user prefers reduced motion,
+        // everything below silently skips and the page behaves exactly as before.
+        (function () {
+            'use strict';
+
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var hasGsap = (typeof gsap !== 'undefined');
+            var hasST = (typeof ScrollTrigger !== 'undefined');
+            var lenis = null;
+
+            if (hasGsap && hasST) { gsap.registerPlugin(ScrollTrigger); }
+
+            // Lenis smooth scroll (the "Lenus" part)
+            if (!reduceMotion && (typeof Lenis !== 'undefined')) {
+                lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+                if (hasGsap) {
+                    if (hasST) { lenis.on('scroll', ScrollTrigger.update); }
+                    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+                    gsap.ticker.lagSmoothing(0);
+                } else {
+                    var rafLenis = function (time) { lenis.raf(time); requestAnimationFrame(rafLenis); };
+                    requestAnimationFrame(rafLenis);
+                }
+                // Anchor links glide instead of jump (accounts for sticky header)
+                document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                    a.addEventListener('click', function (e) {
+                        var id = a.getAttribute('href');
+                        if (id && id.length > 1) {
+                            var target = document.querySelector(id);
+                            if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -84 }); }
+                        }
+                    });
+                });
+            }
+
+            // Pause smooth scroll while the lightbox is open
+            try {
+                var _openLB = window.openLightbox, _closeLB = window.closeLightbox;
+                window.openLightbox = function (src) { if (lenis) lenis.stop(); _openLB(src); };
+                window.closeLightbox = function () { _closeLB(); if (lenis) lenis.start(); };
+            } catch (err) { /* keep original behaviour */ }
+
+            if (!hasGsap || reduceMotion) return;
+
+            // Split-text hero (React-Bits SplitText style, dependency-free)
+            function splitChars(el) {
+                Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+                    if (node.nodeType === 3) {
+                        var frag = document.createDocumentFragment();
+                        node.textContent.split('').forEach(function (ch) {
+                            if (ch.trim() === '') { frag.appendChild(document.createTextNode(' ')); return; }
+                            var s = document.createElement('span');
+                            s.className = 'split-char';
+                            s.textContent = ch;
+                            frag.appendChild(s);
+                        });
+                        el.replaceChild(frag, node);
+                    } else if (node.nodeType === 1 && node.tagName !== 'BR') {
+                        splitChars(node);
+                    }
+                });
+            }
+
+            // Hero entrance timeline
+            var heroTitle = document.querySelector('[data-split]');
+            var heroCopy = document.querySelector('main section > div');
+            var heroImg = document.getElementById('heroSlide');
+            var tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+            if (heroTitle) {
+                splitChars(heroTitle);
+                tl.from(heroTitle.querySelectorAll('.split-char'),
+                    { y: 34, opacity: 0, duration: 0.9, stagger: 0.022 }, 0.1);
+            }
+            if (heroCopy && heroCopy.children.length >= 4) {
+                tl.from([heroCopy.children[0], heroCopy.children[2], heroCopy.children[3]],
+                    { y: 24, opacity: 0, duration: 0.8, stagger: 0.12 }, 0.35);
+            }
+            if (heroImg && heroImg.parentElement) {
+                tl.from(heroImg.parentElement, { scale: 0.96, opacity: 0, duration: 1.1 }, 0.25);
+            }
+
+            if (!hasST) return;
+
+            // Scroll reveals (fade-up on entering viewport)
+            function revealEach(sel) {
+                gsap.utils.toArray(sel).forEach(function (el) {
+                    gsap.from(el, {
+                        y: 36, opacity: 0, duration: 0.9, ease: 'power3.out',
+                        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+                    });
+                });
+            }
+            revealEach('#services .mb-16, #services .grid > div, #projects .mb-12, #quote .text-center, #quoteForm, footer > div');
+
+            // Gallery images glide in as a staggered row
+            var gal = document.querySelector('#projects .no-scrollbar');
+            if (gal) {
+                gsap.from(gal.querySelectorAll('img'), {
+                    x: 60, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08,
+                    scrollTrigger: { trigger: gal, start: 'top 80%', once: true }
+                });
+            }
+
+            // Hero image parallax drift
+            if (heroImg && heroImg.parentElement) {
+                gsap.set(heroImg, { scale: 1.15 });
+                gsap.to(heroImg, {
+                    yPercent: 8, ease: 'none',
+                    scrollTrigger: { trigger: heroImg.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
+                });
+            }
+
+            // Magnetic buttons (React-Bits Magnet style)
+            if (window.matchMedia('(pointer: fine)').matches) {
+                document.querySelectorAll('[data-magnet]').forEach(function (btn) {
+                    var xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3' });
+                    var yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3' });
+                    btn.addEventListener('mousemove', function (e) {
+                        var r = btn.getBoundingClientRect();
+                        xTo((e.clientX - (r.left + r.width / 2)) * 0.3);
+                        yTo((e.clientY - (r.top + r.height / 2)) * 0.3);
+                    });
+                    btn.addEventListener('mouseleave', function () {
+                        gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' });
+                    });
+                });
+            }
+
+            // Spotlight service cards (React-Bits SpotlightCard style)
+            document.querySelectorAll('#services .grid > div').forEach(function (card) {
+                card.classList.add('spotlight');
+                card.addEventListener('mousemove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                });
+            });
+
+            window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+        })();
     </script>
 </body>
 </html>
