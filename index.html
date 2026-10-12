@@ -1,191 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathrubhumi Enterprises — Pre-Engineered Steel Buildings</title>
-<meta name="description" content="Mathrubhumi Enterprises builds pre-engineered steel buildings across India & Nepal. 20,000 MTPA, 50,000 sq ft Sampla plant, 6–8 week delivery. Bringing Global Technology to Your Doorstep.">
-<link rel="icon" href="assets/growth-emblem.webp">
-<link rel="preload" as="image" href="assets/industrial-building-render.webp">
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathrubhumi Enterprises | We build to admire</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0f172a',
+                        lightgrid: '#f8fafc',
+                        bordergray: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Architectural Vertical Grid Lines */
+        body {
+            background-color: #ffffff;
+            background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px);
+            background-size: 10vw 100%;
+            background-attachment: fixed;
+            color: #0f172a;
+            position: relative;
+        }
+
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Slide Transition for Hero */
+        .slide-fade {
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Custom minimal inputs */
+        .minimal-input {
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .minimal-input:focus {
+            outline: none;
+            border-color: #0f172a;
+            box-shadow: 0 0 0 1px #0f172a;
+        }
+
+        /* Lightbox overlay */
+        #lightbox {
+            backdrop-filter: blur(8px);
+            background-color: rgba(15, 23, 42, 0.9);
+        }
+        
+        /* Hide scrollbar for gallery but allow scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased min-h-screen flex flex-col">
 
-<nav class="nav" aria-label="Primary">
-  <div class="nav-inner">
-    <a class="brand" href="#top"><img src="assets/growth-emblem.webp" alt="Mathrubhumi mark"><b>Mathrubhumi Enterprises</b></a>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#overview">Overview</a>
-      <a href="#factory">Factory</a>
-      <a href="#compare">Why PEB</a>
-      <a href="#work">Work</a>
-      <a href="#clients">Clients</a>
-      <a href="#quote" class="btn-pill">Get estimate</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="eyebrow">Pre-Engineered Buildings · India &amp; Nepal</div>
-  <h1>Steel buildings.<br><span>Built to admire.</span></h1>
-  <p class="sub">Bringing Global Technology to Your Doorstep — turnkey design, factory fabrication and rapid erection, with fixed budgets and zero hidden costs.</p>
-  <div class="cta-row">
-    <a href="#quote">Get an estimate</a>
-    <a href="#work">See the work</a>
-  </div>
-  <figure class="hero-fig rv">
-    <img src="assets/industrial-building-render.webp" alt="Architectural rendering of a modern industrial building." fetchpriority="high">
-    <figcaption class="hero-cap">Clear-span PEB · glazed facade · 6–8 week delivery vs 20–26 weeks conventional</figcaption>
-  </figure>
-</header>
-
-<div class="stats">
-  <div class="stats-grid rv">
-    <div><b>20,000 MTPA</b><span>annual fabrication capacity</span></div>
-    <div><b>50,000 sq ft</b><span>covered plant · Sampla, Haryana</span></div>
-    <div><b>6–8 weeks</b><span>typical PEB delivery</span></div>
-    <div><b>500,000+ sqm</b><span>covered space delivered</span></div>
-  </div>
-</div>
-
-<main id="overview">
-
-  <section class="section dark" id="factory">
-    <div class="wrap">
-      <div class="kicker">Factory precision</div>
-      <h2 class="h2">Designed in BIM.<br>Built by robots.</h2>
-      <p class="lede">STAAD.Pro + TEKLA 3D modelling, CNC plasma cutting, automatic submerged-arc welding, SA 2.5 blasting and 100% NDT — all under one roof.</p>
-      <div class="media-2">
-        <div class="tile rv"><img src="assets/multi-bay-structure-model.webp" alt="3D model of a multi-bay steel building frame." loading="lazy"><div class="tile-body"><h3>Multi-bay, crane-ready</h3><p>EOT cranes 5–50T+, mezzanines, surge bracing — engineered to IS 800, AISC and MBMA.</p></div></div>
-        <div class="tile rv"><img src="assets/building-components-cutaway.webp" alt="Annotated 3D cutaway of a steel building and its components." loading="lazy"><div class="tile-body"><h3>Every component, resolved</h3><p>Framing, purlins, cladding, ventilation, access — one barcoded kit, bolted assembly.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background:#fff">
-    <div class="wrap">
-      <div class="kicker">Why Mathrubhumi</div>
-      <h2 class="h2">Lighter. Faster. Fixed price.</h2>
-      <p class="lede">Tapered frames follow the bending-moment envelope — no dead steel, smaller footings, faster commissioning.</p>
-      <div class="grid-3">
-        <div class="card rv"><img src="assets/cnc-cutting-torches.webp" alt="Multiple CNC cutting torches above a steel plate." loading="lazy"><div><h3>30% lighter steel</h3><p>Custom built-up sections replace heavy hot-rolled I-beams. Less weight, same strength.</p></div></div>
-        <div class="card rv"><img src="assets/steel-frame-erection.webp" alt="Multi-bay steel frame during construction." loading="lazy"><div><h3>50% faster erection</h3><p>Factory work runs parallel with foundations. Bolted, numbered, done in weeks.</p></div></div>
-        <div class="card rv"><img src="assets/framing-configurations.webp" alt="Engineering diagrams of clear-span, multi-span and single-slope building frames." loading="lazy"><div><h3>Spans for every brief</h3><p>Clear-span 6–30m+, multi-span to 72m, fixed-base to 96m — warehouses to hangars.</p></div></div>
-        <div class="card rv"><img src="assets/hydraulic-press-brake.webp" alt="Hydraulic press brake for forming metal plate." loading="lazy"><div><h3>1500T press brake</h3><p>Heavy connections, gutters, curved eaves and fascias formed in-house.</p></div></div>
-        <div class="card rv"><img src="assets/purlin-roll-former.webp" alt="Roll-forming machine with a row of metal forming rollers." loading="lazy"><div><h3>Cold-formed精密 purlins</h3><p>Z &amp; C purlins at 20 m/min, punched to ±2 mm — galvanized, high-tensile.</p></div></div>
-        <div class="card rv"><img src="assets/workshop-interior.webp" alt="Interior of a high-bay workshop with overhead cranes." loading="lazy"><div><h3>High-bay ready</h3><p>Overhead cranes, skylights, turbo vents, PUF panels for cold-chain and cleanrooms.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section tight band" id="compare">
-    <div class="wrap">
-      <div class="kicker">PEB vs conventional</div>
-      <h2 class="h2">The math is simple.</h2>
-      <table class="compare rv">
-        <tr><th>Parameter</th><th>Mathrubhumi PEB</th><th>Conventional steel</th></tr>
-        <tr><td>Self-weight</td><td><strong>30% lighter</strong> — tapered sections</td><td>Heavy uniform I-sections</td></tr>
-        <tr><td>Delivery</td><td><strong>6–8 weeks</strong> <span class="pill">Fast</span></td><td>20–26 weeks</td></tr>
-        <tr><td>Cost</td><td><strong>~30% lower</strong> — less steel + footings</td><td>Higher material + labour</td></tr>
-        <tr><td>Erection</td><td>Bolted, numbered kit</td><td>Site welding, weather risk</td></tr>
-        <tr><td>Seismic</td><td>Low mass + ductile frames</td><td>Heavy, stiff, high inertia</td></tr>
-        <tr><td>Budget</td><td>Exact BOQ, zero waste</td><td>Escalations common</td></tr>
-      </table>
-    </div>
-  </section>
-
-  <section class="section" id="work" style="background:#fff">
-    <div class="wrap">
-      <div class="kicker">Work</div>
-      <h2 class="h2">Proof, not promises.</h2>
-      <p class="lede">Frames, cladding and plants — shot on site and in the Sampla works. Tap any image to zoom.</p>
-      <div class="gal rv">
-        <button onclick="openLB('assets/steel-frame-erection.webp','Multi-bay steel frame during construction.')"><img src="assets/steel-frame-erection.webp" alt="Multi-bay steel frame during construction." loading="lazy"></button>
-        <button onclick="openLB('assets/aerial-site-view.webp','Aerial view of a steel-frame construction site.')"><img src="assets/aerial-site-view.webp" alt="Aerial view of a steel-frame construction site." loading="lazy"></button>
-        <button onclick="openLB('assets/workshop-exterior.webp','Exterior of an industrial workshop with large entry bays.')"><img src="assets/workshop-exterior.webp" alt="Exterior of an industrial workshop with large entry bays." loading="lazy"></button>
-        <button onclick="openLB('assets/workshop-interior.webp','Interior of a high-bay workshop with overhead cranes.')"><img src="assets/workshop-interior.webp" alt="Interior of a high-bay workshop with overhead cranes." loading="lazy"></button>
-        <button onclick="openLB('assets/crane-and-joist-detail.webp','Structural drawings of a crane frame and joist connection.')"><img src="assets/crane-and-joist-detail.webp" alt="Structural drawings of a crane frame and joist connection." loading="lazy"></button>
-        <button onclick="openLB('assets/roof-panel-profile.webp','Dimensioned cross-section of a profiled metal roof panel.')"><img src="assets/roof-panel-profile.webp" alt="Dimensioned cross-section of a profiled metal roof panel." loading="lazy"></button>
-        <button onclick="openLB('assets/forming-machine-closeup.webp','Close-up of blue forming equipment with orange safety guards.')"><img src="assets/forming-machine-closeup.webp" alt="Close-up of blue forming equipment with orange safety guards." loading="lazy"></button>
-        <button onclick="openLB('assets/fabrication-line.webp','Fabrication machinery inside a covered workshop.')"><img src="assets/fabrication-line.webp" alt="Fabrication machinery inside a covered workshop." loading="lazy"></button>
-      </div>
-      <p class="hero-cap">500,000+ sqm delivered — Noida · Gurugram · Firozpur · Dhangadi (NP) · Kadappa · Karnal · Jhajjar · Sonipat · Okhla · Belagavi</p>
-    </div>
-  </section>
-
-  <section class="section tight clients" id="clients">
-    <div class="wrap">
-      <div class="kicker">Clients &amp; partners</div>
-      <h2 class="h2">Trusted where it matters.</h2>
-      <p class="lede">IOCL · Dalmia Bharat · KEC · Bridge &amp; Roof · Air India · MG Motors · Unilever · Hyatt · British Embassy · UNICEF · UNOPS</p>
-      <img class="rv" src="assets/client-partner-logo-sheet.webp" alt="Collage of client, institutional and partner logos." loading="lazy">
-    </div>
-  </section>
-
-  <section class="section quote" id="quote">
-    <div class="wrap">
-      <div class="kicker">Estimate</div>
-      <h2 class="h2">Tell us the span.<br>We’ll do the math.</h2>
-      <p class="lede">Send a structured enquiry — it opens in your email app, addressed to us, ready to send.</p>
-      <form class="form rv" id="qform">
-        <div class="f2">
-          <div><label for="fName">Full name</label><input id="fName" required placeholder="e.g. Mukesh Ambani" autocomplete="name"></div>
-          <div><label for="fPhone">Phone</label><input id="fPhone" required pattern="[0-9]{10}" title="10 digits" placeholder="9876543210" inputmode="numeric" autocomplete="tel"></div>
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-bordergray">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <!-- Minimalist Typographic Logo Replaced with Brand Logo -->
+                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Mathrubhumi Enterprises Logo" class="h-12 w-auto object-contain rounded-sm">
+                <div>
+                    <h1 class="font-bold text-lg leading-none tracking-tight text-navy">Mathrubhumi<br>Enterprises</h1>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#services" class="hover:text-gray-500 transition-colors">Services</a>
+                <a href="#projects" class="hover:text-gray-500 transition-colors">Projects</a>
+                <div class="flex flex-col text-right ml-4">
+                    <span class="text-xs text-gray-500">Call Us</span>
+                    <a href="tel:8788138586" class="font-semibold">8788138586</a>
+                </div>
+                <a href="#quote" class="bg-navy text-white px-6 py-2.5 hover:bg-gray-800 transition-colors">
+                    Request Estimate
+                </a>
+            </nav>
         </div>
-        <div class="f2">
-          <div><label for="fEmail">Email</label><input id="fEmail" type="email" required placeholder="name@company.com" autocomplete="email"></div>
-          <div><label for="fLoc">Site location</label>
-            <div style="display:flex;gap:8px"><input id="fLoc" placeholder="City or coordinates"><button type="button" class="icon-btn" onclick="fetchLoc()" title="Use my location">📍</button></div>
-            <div id="locSt" class="note" style="text-align:left"></div>
-          </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative max-w-7xl mx-auto px-6 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16">
+            <!-- Left Text Content -->
+            <div class="w-full lg:w-1/2 z-10 bg-white/80 p-4 lg:p-0 backdrop-blur-sm lg:backdrop-blur-none">
+                <p class="text-sm font-bold tracking-widest uppercase text-gray-500 mb-4">Engineering & Fabrication</p>
+                <h2 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6">
+                    We build <br>
+                    <span class="text-gray-400">to admire.</span>
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-md font-light">
+                    Precision MS steel structures and industrial fabrication. Built on trust with <strong class="text-navy font-semibold">zero hidden costs.</strong>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#quote" class="bg-navy text-white text-center px-8 py-4 font-medium hover:bg-gray-800 transition-colors">
+                        Start Your Project
+                    </a>
+                    <a href="#projects" class="border border-bordergray bg-white text-center px-8 py-4 font-medium hover:border-navy transition-colors">
+                        View Ongoing Work
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image Slideshow Container -->
+            <div class="w-full lg:w-1/2 relative h-[400px] lg:h-[600px] bg-lightgrid border border-bordergray overflow-hidden cursor-pointer" onclick="openLightbox(document.getElementById('heroSlide').src)">
+                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-semibold tracking-wide border border-bordergray z-20">
+                    Safdarjung Project
+                </div>
+                <img id="heroSlide" src="https://i.imgur.com/7uYCIAy.jpeg" alt="Safdarjung Project Structure" class="w-full h-full object-cover slide-fade absolute inset-0">
+                
+                <!-- Slideshow Controls -->
+                <div class="absolute bottom-4 right-4 flex gap-2 z-20">
+                    <button onclick="event.stopPropagation(); prevSlide()" class="w-10 h-10 bg-white border border-bordergray flex items-center justify-center hover:bg-lightgrid transition-colors">
+                        &#8592;
+                    </button>
+                    <button onclick="event.stopPropagation(); nextSlide()" class="w-10 h-10 bg-white border border-bordergray flex items-center justify-center hover:bg-lightgrid transition-colors">
+                        &#8594;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="border-t border-bordergray bg-white relative">
+            <div class="max-w-7xl mx-auto px-6 py-24">
+                <div class="mb-16">
+                    <h3 class="text-3xl font-bold tracking-tight mb-4">Core Services</h3>
+                    <p class="text-gray-500 max-w-xl">We specialize in robust, scalable, and meticulously engineered structures for industrial and commercial applications.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-bordergray bg-lightgrid">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
+                            <span class="text-xl font-bold text-gray-400">01</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">MS Steel Structure</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">High-grade mild steel structural frameworks tailored for heavy-duty load bearing and long-term durability.</p>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
+                            <span class="text-xl font-bold text-gray-400">02</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Fabrication</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">Precision cutting, bending, and assembling of metal components to exact architectural specifications.</p>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
+                            <span class="text-xl font-bold text-gray-400">03</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Industrial Shedding</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">Large-scale industrial sheds designed for optimal space utilization, ventilation, and structural integrity.</p>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="bg-white p-10 border border-bordergray hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-lightgrid border border-bordergray flex items-center justify-center mb-6">
+                            <span class="text-xl font-bold text-gray-400">04</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">PEP Structure</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">Pre-engineered PEB/PEP steel structures offering rapid installation, cost-efficiency, and flexibility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="border-t border-bordergray bg-lightgrid relative">
+            <div class="max-w-7xl mx-auto px-6 py-24">
+                <div class="flex flex-col lg:flex-row justify-between items-end mb-12 gap-6">
+                    <div>
+                        <h3 class="text-3xl font-bold tracking-tight mb-2">Safdarjung Railway Station</h3>
+                        <p class="text-gray-500">Current Ongoing Project Portfolio</p>
+                    </div>
+                    <div class="bg-white border border-bordergray px-4 py-2 text-sm font-medium">
+                        Status: <span class="text-green-600">Active</span>
+                    </div>
+                </div>
+
+                <!-- Horizontal Scroll Gallery -->
+                <div class="flex overflow-x-auto gap-4 pb-8 no-scrollbar snap-x">
+                    <!-- Gallery Images injected via JS below, but here are the first few hardcoded for fast loading -->
+                    <img src="https://i.imgur.com/7uYCIAy.jpeg" alt="Safdarjung Site 1" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/NcoYkDs.jpeg" alt="Safdarjung Site 2" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/H7ADlCI.jpeg" alt="Safdarjung Site 3" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/1uKI9UI.jpeg" alt="Safdarjung Site 4" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/YzIWjMU.jpeg" alt="Safdarjung Site 5" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/GaXqmjN.jpeg" alt="Safdarjung Site 6" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/uMZp6ZF.jpeg" alt="Safdarjung Site 7" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/eQdUxS6.jpeg" alt="Safdarjung Site 8" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/6JizYtv.jpeg" alt="Safdarjung Site 9" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                    <img src="https://i.imgur.com/3mgi0Hx.jpeg" alt="Safdarjung Site 10" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" class="border-t border-bordergray bg-white relative">
+            <div class="max-w-4xl mx-auto px-6 py-24">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold tracking-tight mb-4">Request an Estimate</h3>
+                    <p class="text-gray-500">Provide your project details below. We guarantee transparent pricing with zero hidden costs.</p>
+                </div>
+
+                <form id="quoteForm" class="bg-lightgrid p-8 lg:p-12 border border-bordergray">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-navy">Full Name</label>
+                            <input type="text" id="clientName" required class="w-full p-4 minimal-input" placeholder="e.g. John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-navy">Phone Number</label>
+                            <input type="tel" id="clientPhone" required pattern="[0-9]{10}" title="Please enter exactly 10 digits" class="w-full p-4 minimal-input" placeholder="e.g. 9876543210">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-navy">Email Address</label>
+                            <input type="email" id="clientEmail" required class="w-full p-4 minimal-input" placeholder="name@company.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-navy">Location</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="clientLocation" class="w-full p-4 minimal-input" placeholder="City or GPS Coordinates">
+                                <button type="button" onclick="fetchLocation()" class="bg-lightgrid px-4 text-xl hover:bg-gray-200 transition-colors border border-bordergray" title="Fetch current location">
+                                    📍
+                                </button>
+                            </div>
+                            <p id="locationStatus" class="text-xs text-gray-500 mt-1 hidden"></p>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 border border-bordergray p-6 bg-white">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
+                            <label class="block text-sm font-semibold text-navy">Services Required & Quantity</label>
+                            <button type="button" onclick="addServiceRow()" class="text-xs font-bold bg-navy text-white px-4 py-2 hover:bg-gray-800 transition-colors">+ Add Service</button>
+                        </div>
+                        <div id="servicesContainer" class="space-y-3">
+                            <!-- Initial Service Row -->
+                            <div class="flex gap-2 service-row">
+                                <input type="text" required class="w-3/5 p-3 minimal-input service-name" placeholder="Service (e.g. MS Steel Structure)">
+                                <input type="text" required class="w-2/5 p-3 minimal-input service-qty" placeholder="Qty/Unit (e.g. 50 tons)">
+                                <button type="button" onclick="if(document.querySelectorAll('.service-row').length > 1) this.parentElement.remove()" class="px-3 text-red-500 font-bold hover:bg-red-50 transition-colors text-xl">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-sm font-semibold mb-2 text-navy">Project Description</label>
+                        <textarea id="clientMessage" rows="4" required class="w-full p-4 minimal-input" placeholder="Tell us about your project scale, specific requirements, and timeline..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-navy text-white font-semibold p-4 hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                        Submit Request Form
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                    
+                    <div id="formSuccessMsg" class="hidden mt-4 p-4 bg-green-50 text-green-800 border border-green-200 text-sm font-medium text-center">
+                        Request prepared! Opening your email client...
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-bordergray py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Logo" class="h-8 w-auto object-contain rounded-sm">
+                <span class="font-bold tracking-tight">Mathrubhumi Enterprises</span>
+            </div>
+            <div class="text-sm text-gray-500 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+                <span>Email: Mathrubhumie@gmail.com</span>
+                <span>Phone: 8788138586</span>
+            </div>
+            <div class="text-xs text-gray-400">
+                &copy; 2026 Mathrubhumi Enterprises.
+            </div>
         </div>
-        <label>Services &amp; quantity</label>
-        <div id="svcBox">
-          <div class="svc-row">
-            <input class="svc-n" required placeholder="Service (e.g. MS Steel Structure)">
-            <input class="svc-q" required placeholder="Qty (e.g. 50 tons)">
-            <button type="button" class="icon-btn" onclick="if(document.querySelectorAll('.svc-row').length>1)this.parentElement.remove()">×</button>
-          </div>
-        </div>
-        <div style="margin-top:8px"><button type="button" class="add-btn" onclick="addSvc()">+ Add service</button></div>
-        <label for="fMsg">Project description</label>
-        <textarea id="fMsg" required placeholder="Span, eave height, crane need, deadline…"></textarea>
-        <button class="btn-pill submit" type="submit">Prepare email request →</button>
-        <div class="ok" id="okMsg">Request prepared — opening your email app…</div>
-        <p class="note">Prefer direct? <a href="mailto:mathrubhuie@gmail.com">mathrubhuie@gmail.com</a> · <a href="tel:+918788138586">+91 87881 38586</a></p>
-      </form>
-    </div>
-  </section>
+    </footer>
 
-</main>
-
-<footer>
-  <div class="foot">
-    <div class="foot-grid">
-      <div>
-        <h4>Mathrubhumi Enterprises</h4>
-        Engineered for Strength, Delivering Precision Nationwide.<br>Registered: Prabhunath Nagar, Chapra, Bihar 841301<br>Design hub: Udyog Vihar V, Gurugram 122008<br>Plant: Sampla-Beri Road, Sampla, Haryana 124501
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="tel:+918788138586">+91 87881 38586</a><br>
-        <a href="mailto:mathrubhuie@gmail.com">mathrubhuie@gmail.com</a><br>
-        <a href="https://mathrubhumi.site">mathrubhumi.site</a>
-      </div>
-      <div>
-        <h4>Capabilities</h4>
-        PEB frames · Heavy fabrication<br>CNC cutting · SAW welding<br>PUF panels · Crane systems<br>Erection pan-India + Nepal
-      </div>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-4xl hover:text-gray-300">&times;</button>
+        <img id="lightboxImg" src="" alt="Zoomed view" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-gray-700" onclick="event.stopPropagation()">
     </div>
-    <div class="legal">
-      <span>Copyright © <span id="yr">2026</span> Mathrubhumi Enterprises. All rights reserved.</span>
-      <span>20,000 MTPA · ISO 9001 process · IS / AISC / MBMA</span>
-    </div>
-  </div>
-</footer>
 
-<div class="lb" id="lb"><button onclick="closeLB()" aria-label="Close">×</button><img id="lbImg" alt=""></div>
-<script src="script.js" defer></script>
+    <script>
+        // --- 1. SLIDESHOW LOGIC ---
+        const images = [
+            'https://i.imgur.com/7uYCIAy.jpeg',
+            'https://i.imgur.com/NcoYkDs.jpeg',
+            'https://i.imgur.com/H7ADlCI.jpeg',
+            'https://i.imgur.com/1uKI9UI.jpeg',
+            'https://i.imgur.com/YzIWjMU.jpeg',
+            'https://i.imgur.com/GaXqmjN.jpeg',
+            'https://i.imgur.com/uMZp6ZF.jpeg',
+            'https://i.imgur.com/eQdUxS6.jpeg',
+            'https://i.imgur.com/6JizYtv.jpeg',
+            'https://i.imgur.com/3mgi0Hx.jpeg'
+        ];
+        
+        let currentSlideIndex = 0;
+        const heroSlide = document.getElementById('heroSlide');
+        let slideInterval;
+
+        function updateSlide() {
+            heroSlide.style.opacity = 0;
+            setTimeout(() => {
+                heroSlide.src = images[currentSlideIndex];
+                heroSlide.style.opacity = 1;
+            }, 300); // Wait for fade out
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % images.length;
+            updateSlide();
+            resetInterval();
+        }
+
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + images.length) % images.length;
+            updateSlide();
+            resetInterval();
+        }
+
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 4000); // 4 seconds
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // Initialize slideshow
+        startInterval();
+
+
+        // --- 2. LIGHTBOX LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // prevent scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            lightboxImg.src = '';
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+
+
+        // --- 3. QUOTE FORM, LOCATION & EMAIL LOGIC ---
+        
+        // Location Fetcher
+        function fetchLocation() {
+            const locInput = document.getElementById('clientLocation');
+            const locStatus = document.getElementById('locationStatus');
+            
+            if (!navigator.geolocation) {
+                locStatus.textContent = "Geolocation is not supported by your browser.";
+                locStatus.classList.remove('hidden', 'text-green-600');
+                locStatus.classList.add('text-red-500');
+                return;
+            }
+
+            locStatus.textContent = "Fetching location...";
+            locStatus.classList.remove('hidden', 'text-red-500');
+            locStatus.classList.add('text-gray-500');
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    locInput.value = `Lat: ${lat.toFixed(5)}, Lon: ${lon.toFixed(5)}`;
+                    locStatus.textContent = "Location successfully captured!";
+                    locStatus.classList.replace('text-gray-500', 'text-green-600');
+                },
+                (error) => {
+                    locStatus.textContent = "Unable to retrieve location. Please type it manually.";
+                    locStatus.classList.replace('text-gray-500', 'text-red-500');
+                }
+            );
+        }
+
+        // Dynamic Service Rows
+        function addServiceRow() {
+            const container = document.getElementById('servicesContainer');
+            const row = document.createElement('div');
+            row.className = 'flex gap-2 service-row';
+            row.innerHTML = `
+                <input type="text" required class="w-3/5 p-3 minimal-input service-name" placeholder="Service (e.g. Fabrication)">
+                <input type="text" required class="w-2/5 p-3 minimal-input service-qty" placeholder="Qty/Unit">
+                <button type="button" onclick="this.parentElement.remove()" class="px-3 text-red-500 font-bold hover:bg-red-50 transition-colors text-xl">&times;</button>
+            `;
+            container.appendChild(row);
+        }
+
+        // Form Submission to Email
+        const quoteForm = document.getElementById('quoteForm');
+        const formSuccessMsg = document.getElementById('formSuccessMsg');
+        
+        quoteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Gather basic data
+            const name = document.getElementById('clientName').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const email = document.getElementById('clientEmail').value.trim();
+            const location = document.getElementById('clientLocation').value.trim();
+            const message = document.getElementById('clientMessage').value.trim();
+
+            // Gather dynamic services
+            let servicesText = "";
+            const serviceRows = document.querySelectorAll('.service-row');
+            serviceRows.forEach((row, index) => {
+                const sName = row.querySelector('.service-name').value.trim();
+                const sQty = row.querySelector('.service-qty').value.trim();
+                if (sName) {
+                    servicesText += `  ${index + 1}. ${sName} - ${sQty}\n`;
+                }
+            });
+
+            // Construct perfectly formatted email body
+            const subject = encodeURIComponent(`New Project Inquiry from ${name}`);
+            const bodyText = `New Lead Details:
+-----------------------------------------
+👤 Name: ${name}
+📞 Phone: ${phone}
+✉️ Email: ${email}
+📍 Location: ${location || 'Not provided'}
+
+🛠️ Required Services & Quantities:
+-----------------------------------------
+${servicesText || '  None specified'}
+
+📝 Project Description:
+-----------------------------------------
+${message}`;
+
+            const body = encodeURIComponent(bodyText);
+            
+            // Open user's default email client
+            window.location.href = `mailto:Mathrubhumie@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show success briefly
+            formSuccessMsg.classList.remove('hidden');
+            setTimeout(() => {
+                formSuccessMsg.classList.add('hidden');
+                // Optional: reset form
+                // quoteForm.reset(); 
+            }, 4000);
+        });
+
+    </script>
 </body>
 </html>

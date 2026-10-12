@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" fill="none">
-<g stroke="#1e4f73" stroke-opacity=".07" stroke-width="1">
-<path d="M0 40H640M0 80H640M0 120H640M0 160H640M0 200H640M0 240H640M0 280H640"/>
-<path d="M40 0V320M80 0V320M120 0V320M160 0V320M200 0V320M240 0V320M280 0V320M320 0V320M360 0V320M400 0V320M440 0V320M480 0V320M520 0V320M560 0V320M600 0V320"/>
-</g><g stroke="#1e4f73" stroke-opacity=".10" stroke-width="2">
-<path d="M0 128 80 54l80 74 80-74 80 74 80-74 80 74 80-74 80 74"/>
-<path d="M0 128h640M80 54v74m160-74v74m160-74v74m160-74v74"/>
-<path d="M0 285 32 253l32 32-32 32m576-32 32-32 32 32-32 32"/>
-</g><g stroke="#b78a50" stroke-opacity=".09" stroke-width="2"><path d="M0 300H640M0 22H640"/></g></svg>
