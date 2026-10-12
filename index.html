@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathrubhumi Enterprises | We build to admire</title>
+    <meta name="description" content="Mathrubhumi Enterprises — pre-engineered steel buildings and heavy fabrication across India & Nepal. 20,000 MTPA plant, 6–8 week delivery, zero hidden costs.">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Mathrubhumi Enterprises | We build to admire">
+    <meta property="og:description" content="Precision MS steel structures and industrial fabrication. 20,000 MTPA, 50,000 sq ft plant, pan-India delivery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/industrial-building-render.webp">
+    <link rel="icon" href="assets/growth-emblem.webp">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,6 +102,57 @@
             transition: opacity 0.35s ease;
         }
         .spotlight:hover::before { opacity: 1; }
+
+        /* ChromaGrid gallery (React-Bits ChromaGrid style) */
+        .chroma-grid img {
+            filter: grayscale(1) contrast(1.04);
+            transition: filter 0.45s ease, transform 0.45s ease;
+        }
+        .chroma-grid img.lit, .chroma-grid img:hover { filter: none; }
+
+        /* StarBorder CTA (React-Bits StarBorder style, lightweight sweep) */
+        .star-cta { position: relative; isolation: isolate; overflow: hidden; }
+        .star-cta::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
+            background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.95) 50%, transparent 75%);
+            background-size: 250% 100%; background-position: 120% 0;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            animation: star-sweep 3.4s linear infinite; pointer-events: none;
+        }
+        @keyframes star-sweep { 0% { background-position: 120% 0; } 100% { background-position: -120% 0; } }
+
+        /* GlareHover cards (React-Bits GlareHover style) */
+        .glare { position: relative; overflow: hidden; }
+        .glare::after {
+            content: ""; position: absolute; inset: -40%; pointer-events: none;
+            background: linear-gradient(var(--ga, 115deg), transparent 42%, rgba(255,255,255,0.5) 50%, transparent 58%);
+            transform: translateX(-130%); opacity: 0;
+        }
+        .glare.glare-on::after { transform: translateX(130%); opacity: 1; transition: transform 0.9s ease, opacity 0.3s ease; }
+
+        /* Rotating hero words (React-Bits RotatingText style) */
+        .rot-word { display: inline-block; will-change: transform, opacity; }
+
+        /* ClickSpark canvas (React-Bits ClickSpark style) */
+        #sparkCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 70; }
+
+        /* StatusMark send button (React-Bits StatusMark style) */
+        .btn-spin {
+            width: 18px; height: 18px; flex: none;
+            border: 2.5px solid rgba(255,255,255,0.35); border-top-color: #fff;
+            border-radius: 50%; display: inline-block; animation: btn-spin 0.7s linear infinite;
+            vertical-align: -4px;
+        }
+        @keyframes btn-spin { to { transform: rotate(360deg); } }
+        .hp-field { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; }
+
+        /* Blueprint artwork from the asset pack backs the quote section */
+        #quote {
+            background-image: url("assets/blueprint-pattern.svg");
+            background-repeat: repeat;
+            background-size: 640px 320px;
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -103,7 +161,7 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <!-- Minimalist Typographic Logo Replaced with Brand Logo -->
-                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Mathrubhumi Enterprises Logo" class="h-12 w-auto object-contain rounded-sm">
+                <img src="assets/growth-emblem.webp" alt="Mathrubhumi Enterprises Logo" class="h-12 w-auto object-contain rounded-sm">
                 <div>
                     <h1 class="font-bold text-lg leading-none tracking-tight text-navy">Mathrubhumi<br>Enterprises</h1>
                 </div>
@@ -111,7 +169,9 @@
             
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#services" class="hover:text-gray-500 transition-colors">Services</a>
+                <a href="#engineering" class="hover:text-gray-500 transition-colors">Engineering</a>
                 <a href="#projects" class="hover:text-gray-500 transition-colors">Projects</a>
+                <a href="#factory" class="hover:text-gray-500 transition-colors">Plant</a>
                 <div class="flex flex-col text-right ml-4">
                     <span class="text-xs text-gray-500">Call Us</span>
                     <a href="tel:8788138586" class="font-semibold">8788138586</a>
@@ -134,9 +194,10 @@
                 </h2>
                 <p class="text-xl text-gray-600 mb-8 max-w-md font-light">
                     Precision MS steel structures and industrial fabrication. Built on trust with <strong class="text-navy font-semibold">zero hidden costs.</strong>
+                    <span class="block mt-3 text-navy font-semibold">Built for <span id="rotWord" class="rot-word">Warehouses</span></span>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#quote" data-magnet class="bg-navy text-white text-center px-8 py-4 font-medium hover:bg-gray-800 transition-colors">
+                    <a href="#quote" data-magnet class="star-cta bg-navy text-white text-center px-8 py-4 font-medium hover:bg-gray-800 transition-colors">
                         Start Your Project
                     </a>
                     <a href="#projects" data-magnet class="border border-bordergray bg-white text-center px-8 py-4 font-medium hover:border-navy transition-colors">
@@ -148,9 +209,9 @@
             <!-- Right Image Slideshow Container -->
             <div class="w-full lg:w-1/2 relative h-[400px] lg:h-[600px] bg-lightgrid border border-bordergray overflow-hidden cursor-pointer" onclick="openLightbox(document.getElementById('heroSlide').src)">
                 <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-semibold tracking-wide border border-bordergray z-20">
-                    Safdarjung Project
+                    Featured Build · PEB Steel
                 </div>
-                <img id="heroSlide" src="https://i.imgur.com/7uYCIAy.jpeg" alt="Safdarjung Project Structure" class="w-full h-full object-cover slide-fade absolute inset-0">
+                <img id="heroSlide" src="assets/industrial-building-render.webp" alt="Pre-engineered steel building render" class="w-full h-full object-cover slide-fade absolute inset-0">
                 
                 <!-- Slideshow Controls -->
                 <div class="absolute bottom-4 right-4 flex gap-2 z-20">
@@ -161,6 +222,15 @@
                         &#8594;
                     </button>
                 </div>
+            </div>
+        </section>
+
+        <section class="border-t border-bordergray bg-navy text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 py-14 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="reveal"><div class="text-4xl lg:text-5xl font-bold tracking-tight"><span data-count="20000">0</span></div><div class="text-sm text-gray-300 mt-2 tracking-wide">MTPA fabrication capacity</div></div>
+                <div class="reveal"><div class="text-4xl lg:text-5xl font-bold tracking-tight"><span data-count="50000">0</span></div><div class="text-sm text-gray-300 mt-2 tracking-wide">Sq ft covered plant · Sampla</div></div>
+                <div class="reveal"><div class="text-4xl lg:text-5xl font-bold tracking-tight"><span data-count="500000">0</span></div><div class="text-sm text-gray-300 mt-2 tracking-wide">Sq m covered space delivered</div></div>
+                <div class="reveal"><div class="text-4xl lg:text-5xl font-bold tracking-tight"><span data-count="18" data-suffix="+">0</span></div><div class="text-sm text-gray-300 mt-2 tracking-wide">States served + Nepal</div></div>
             </div>
         </section>
 
@@ -208,6 +278,37 @@
             </div>
         </section>
 
+        <section id="engineering" class="border-t border-bordergray bg-white relative">
+            <div class="max-w-7xl mx-auto px-6 py-24">
+                <div class="mb-12 reveal">
+                    <h3 class="blur-text text-3xl font-bold tracking-tight mb-4">Engineered, Not Just Built</h3>
+                    <p class="text-gray-500 max-w-xl">STAAD.Pro + TEKLA BIM modelling, tapered frames and Hi-Rib cladding — the engineering behind every span we ship.</p>
+                </div>
+                <figure class="reveal border border-bordergray bg-lightgrid mb-4 cursor-zoom-in overflow-hidden" onclick="openLightbox('assets/building-components-cutaway.webp')">
+                    <img src="assets/building-components-cutaway.webp" alt="Annotated 3D cutaway of a steel building and its components." loading="lazy" class="w-full h-auto object-cover">
+                    <figcaption class="px-6 py-4 text-sm font-medium bg-white border-t border-bordergray">Anatomy of a Mathrubhumi PEB — framing, purlins, cladding, ventilation and access in one bolted kit.</figcaption>
+                </figure>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/framing-configurations.webp')">
+                        <img src="assets/framing-configurations.webp" alt="Engineering diagrams of clear-span, multi-span and single-slope building frames." loading="lazy" class="w-full h-52 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Clear, multi-span &amp; single-slope frames</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/crane-and-joist-detail.webp')">
+                        <img src="assets/crane-and-joist-detail.webp" alt="Structural drawings of a crane frame and joist connection." loading="lazy" class="w-full h-52 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Crane beams &amp; joist connections</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/roof-panel-profile.webp')">
+                        <img src="assets/roof-panel-profile.webp" alt="Dimensioned cross-section of a profiled metal roof panel." loading="lazy" class="w-full h-52 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Hi-Rib panel profile · 32 mm rib</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/multi-bay-structure-model.webp')">
+                        <img src="assets/multi-bay-structure-model.webp" alt="3D model of a multi-bay steel building frame." loading="lazy" class="w-full h-52 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Multi-bay 3D structural model</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="border-t border-bordergray bg-lightgrid relative">
             <div class="max-w-7xl mx-auto px-6 py-24">
                 <div class="flex flex-col lg:flex-row justify-between items-end mb-12 gap-6">
@@ -221,19 +322,86 @@
                 </div>
 
                 <!-- Horizontal Scroll Gallery -->
-                <div class="flex overflow-x-auto gap-4 pb-8 no-scrollbar snap-x">
-                    <!-- Gallery Images injected via JS below, but here are the first few hardcoded for fast loading -->
-                    <img src="https://i.imgur.com/7uYCIAy.jpeg" alt="Safdarjung Site 1" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/NcoYkDs.jpeg" alt="Safdarjung Site 2" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/H7ADlCI.jpeg" alt="Safdarjung Site 3" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/1uKI9UI.jpeg" alt="Safdarjung Site 4" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/YzIWjMU.jpeg" alt="Safdarjung Site 5" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/GaXqmjN.jpeg" alt="Safdarjung Site 6" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/uMZp6ZF.jpeg" alt="Safdarjung Site 7" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/eQdUxS6.jpeg" alt="Safdarjung Site 8" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/6JizYtv.jpeg" alt="Safdarjung Site 9" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
-                    <img src="https://i.imgur.com/3mgi0Hx.jpeg" alt="Safdarjung Site 10" class="h-64 lg:h-96 w-auto object-cover border border-bordergray snap-start cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                <!-- ChromaGrid project gallery: local assets, color follows the cursor -->
+                <div class="chroma-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="projectGal">
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/steel-frame-erection.webp')">
+                        <img src="assets/steel-frame-erection.webp" alt="Multi-bay steel frame during construction." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Multi-bay frame erection</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/aerial-site-view.webp')">
+                        <img src="assets/aerial-site-view.webp" alt="Aerial view of a steel-frame construction site." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Aerial site view</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/workshop-exterior.webp')">
+                        <img src="assets/workshop-exterior.webp" alt="Exterior of an industrial workshop with large entry bays." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Delivered workshop exterior</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/workshop-interior.webp')">
+                        <img src="assets/workshop-interior.webp" alt="Interior of a high-bay workshop with overhead cranes." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">High-bay interiors</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/building-components-cutaway.webp')">
+                        <img src="assets/building-components-cutaway.webp" alt="Annotated 3D cutaway of a steel building and its components." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Building anatomy</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/multi-bay-structure-model.webp')">
+                        <img src="assets/multi-bay-structure-model.webp" alt="3D model of a multi-bay steel building frame." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Structural 3D model</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/fabrication-line.webp')">
+                        <img src="assets/fabrication-line.webp" alt="Fabrication machinery inside a covered workshop." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">In-plant fabrication</figcaption>
+                    </figure>
+                    <figure class="border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/framing-configurations.webp')">
+                        <img src="assets/framing-configurations.webp" alt="Engineering diagrams of clear-span, multi-span and single-slope building frames." loading="lazy" class="w-full h-56 lg:h-64 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Framing options</figcaption>
+                    </figure>
                 </div>
+            </div>
+        </section>
+
+        <section id="factory" class="border-t border-bordergray bg-white relative">
+            <div class="max-w-7xl mx-auto px-6 py-24">
+                <div class="mb-12 reveal">
+                    <h3 class="blur-text text-3xl font-bold tracking-tight mb-4">Inside Our Fabrication Plant</h3>
+                    <p class="text-gray-500 max-w-xl">50,000 sq ft under roof in Sampla, Haryana — CNC cutting, automatic welding and high-speed roll forming rated at 20,000 MTPA.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/forming-machine-closeup.webp')">
+                        <img src="assets/forming-machine-closeup.webp" alt="Close-up of blue forming equipment with orange safety guards." loading="lazy" class="w-full h-60 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Forming presses · guarded cells</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/cnc-cutting-torches.webp')">
+                        <img src="assets/cnc-cutting-torches.webp" alt="Multiple CNC cutting torches above a steel plate." loading="lazy" class="w-full h-60 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">CNC multi-torch cutting beds</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/fabrication-line.webp')">
+                        <img src="assets/fabrication-line.webp" alt="Fabrication machinery inside a covered workshop." loading="lazy" class="w-full h-60 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Assembly lines under one roof</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/hydraulic-press-brake.webp')">
+                        <img src="assets/hydraulic-press-brake.webp" alt="Hydraulic press brake for forming metal plate." loading="lazy" class="w-full h-60 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">1500T hydraulic press brake</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/purlin-roll-former.webp')">
+                        <img src="assets/purlin-roll-former.webp" alt="Roll-forming machine with a row of metal forming rollers." loading="lazy" class="w-full h-60 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">Purlin roll forming · 20 m/min</figcaption>
+                    </figure>
+                    <figure class="reveal border border-bordergray bg-white overflow-hidden cursor-zoom-in" onclick="openLightbox('assets/workshop-interior.webp')">
+                        <img src="assets/workshop-interior.webp" alt="Interior of a high-bay workshop with overhead cranes." loading="lazy" class="w-full h-60 object-cover">
+                        <figcaption class="px-4 py-3 text-sm font-medium">High-bay shops · EOT cranes</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="clients" class="border-t border-bordergray bg-lightgrid relative">
+            <div class="max-w-7xl mx-auto px-6 py-20 text-center">
+                <div class="reveal">
+                    <h3 class="blur-text text-3xl font-bold tracking-tight mb-4">Trusted Across Industries</h3>
+                    <p class="text-gray-500 max-w-2xl mx-auto mb-10">IOCL · Dalmia Bharat · KEC International · Bridge &amp; Roof · Air India · MG Motors · Unilever · Hyatt Regency · British Embassy · UNICEF · UNOPS</p>
+                </div>
+                <img src="assets/client-partner-logo-sheet.webp" alt="Collage of client, institutional and partner logos." loading="lazy" class="reveal mx-auto max-w-4xl w-full border border-bordergray bg-white">
             </div>
         </section>
 
@@ -245,6 +413,7 @@
                 </div>
 
                 <form id="quoteForm" class="bg-lightgrid p-8 lg:p-12 border border-bordergray">
+                    <input type="text" id="company_website" name="company_website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label class="block text-sm font-semibold mb-2 text-navy">Full Name</label>
@@ -293,8 +462,8 @@
                         <textarea id="clientMessage" rows="4" required class="w-full p-4 minimal-input" placeholder="Tell us about your project scale, specific requirements, and timeline..."></textarea>
                     </div>
 
-                    <button type="submit" class="w-full bg-navy text-white font-semibold p-4 hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                        Submit Request Form
+                    <button type="submit" id="sendBtn" class="w-full bg-navy text-white font-semibold p-4 hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                        <span id="sendLabel">Submit Request Form</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                     
@@ -307,19 +476,31 @@
 
     </main>
 
-    <footer class="bg-white border-t border-bordergray py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <img src="https://i.imgur.com/eq6H5bu.jpeg" alt="Logo" class="h-8 w-auto object-contain rounded-sm">
-                <span class="font-bold tracking-tight">Mathrubhumi Enterprises</span>
+    <footer class="bg-navy text-white py-14">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="assets/growth-emblem.webp" alt="Logo" class="h-9 w-auto object-contain rounded-sm bg-white">
+                    <span class="font-bold tracking-tight text-lg">Mathrubhumi Enterprises</span>
+                </div>
+                <p class="text-sm text-gray-300">Engineered for strength, delivering precision nationwide. Pre-engineered steel buildings from design to erection.</p>
             </div>
-            <div class="text-sm text-gray-500 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
-                <span>Email: Mathrubhumie@gmail.com</span>
-                <span>Phone: 8788138586</span>
+            <div class="text-sm">
+                <h5 class="font-bold mb-3 tracking-wide">OFFICES &amp; PLANT</h5>
+                <p class="text-gray-300 mb-2">Chapra, Bihar — Head Office</p>
+                <p class="text-gray-300 mb-2">Udyog Vihar V, Gurugram — Design Hub</p>
+                <p class="text-gray-300">Sampla, Haryana — 50,000 sq ft Plant</p>
             </div>
-            <div class="text-xs text-gray-400">
-                &copy; 2026 Mathrubhumi Enterprises.
+            <div class="text-sm">
+                <h5 class="font-bold mb-3 tracking-wide">CONTACT</h5>
+                <p class="mb-2"><a href="mailto:Mathrubhumie@gmail.com" class="text-gray-300 hover:text-white transition-colors">Mathrubhumie@gmail.com</a></p>
+                <p class="mb-4"><a href="tel:8788138586" class="text-gray-300 hover:text-white transition-colors">+91 8788138586</a></p>
+                <a href="#quote" class="inline-block border border-gray-500 px-6 py-2.5 hover:bg-white hover:text-navy transition-colors">Request Estimate</a>
             </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-gray-700 text-xs text-gray-400 flex flex-col md:flex-row justify-between gap-2">
+            <span>&copy; 2026 Mathrubhumi Enterprises. All rights reserved.</span>
+            <span>20,000 MTPA · ISO 9001 process · IS / AISC / MBMA</span>
         </div>
     </footer>
 
@@ -337,16 +518,10 @@
     <script>
         // --- 1. SLIDESHOW LOGIC ---
         const images = [
-            'https://i.imgur.com/7uYCIAy.jpeg',
-            'https://i.imgur.com/NcoYkDs.jpeg',
-            'https://i.imgur.com/H7ADlCI.jpeg',
-            'https://i.imgur.com/1uKI9UI.jpeg',
-            'https://i.imgur.com/YzIWjMU.jpeg',
-            'https://i.imgur.com/GaXqmjN.jpeg',
-            'https://i.imgur.com/uMZp6ZF.jpeg',
-            'https://i.imgur.com/eQdUxS6.jpeg',
-            'https://i.imgur.com/6JizYtv.jpeg',
-            'https://i.imgur.com/3mgi0Hx.jpeg'
+            'assets/industrial-building-render.webp',
+            'assets/steel-frame-erection.webp',
+            'assets/aerial-site-view.webp',
+            'assets/workshop-exterior.webp'
         ];
         
         let currentSlideIndex = 0;
@@ -460,35 +635,61 @@
         const quoteForm = document.getElementById('quoteForm');
         const formSuccessMsg = document.getElementById('formSuccessMsg');
         
-        quoteForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Gather basic data
-            const name = document.getElementById('clientName').value.trim();
-            const phone = document.getElementById('clientPhone').value.trim();
-            const email = document.getElementById('clientEmail').value.trim();
-            const location = document.getElementById('clientLocation').value.trim();
-            const message = document.getElementById('clientMessage').value.trim();
+        // --- Lead capture: Supabase direct insert with mailto fallback ---
+        // ★★ PASTE KEYS TO GO LIVE — until then Send behaves exactly as before. ★★
+        const SUPABASE_URL = "";
+        const SUPABASE_ANON_KEY = "";
+        const LEADS_TABLE = "leads";
 
-            // Gather dynamic services
+        const sendBtn = document.getElementById('sendBtn');
+        const sendBtnHTML = sendBtn.innerHTML;
+        function setSendState(mode, text) {
+            if (mode === 'sending') {
+                sendBtn.disabled = true;
+                sendBtn.innerHTML = '<span class="btn-spin"></span><span>Saving…</span>';
+            } else if (mode === 'sent') {
+                sendBtn.disabled = true;
+                sendBtn.innerHTML = '<span>✓ Saved — we will be in touch</span>';
+                setTimeout(() => { sendBtn.disabled = false; sendBtn.innerHTML = sendBtnHTML; }, 4500);
+            } else {
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = sendBtnHTML;
+            }
+            if (text) {
+                formSuccessMsg.textContent = text;
+                formSuccessMsg.classList.remove('hidden');
+            }
+        }
+
+        function collectLead() {
+            const data = {
+                name: document.getElementById('clientName').value.trim(),
+                phone: document.getElementById('clientPhone').value.trim(),
+                email: document.getElementById('clientEmail').value.trim(),
+                location: document.getElementById('clientLocation').value.trim(),
+                message: document.getElementById('clientMessage').value.trim()
+            };
             let servicesText = "";
-            const serviceRows = document.querySelectorAll('.service-row');
-            serviceRows.forEach((row, index) => {
+            const rows = [];
+            document.querySelectorAll('.service-row').forEach((row, index) => {
                 const sName = row.querySelector('.service-name').value.trim();
                 const sQty = row.querySelector('.service-qty').value.trim();
                 if (sName) {
+                    rows.push({ service: sName, qty: sQty });
                     servicesText += `  ${index + 1}. ${sName} - ${sQty}\n`;
                 }
             });
+            return { data, servicesText, rows };
+        }
 
-            // Construct perfectly formatted email body
-            const subject = encodeURIComponent(`New Project Inquiry from ${name}`);
+        function sendViaMailto(data, servicesText) {
+            const subject = encodeURIComponent(`New Project Inquiry from ${data.name}`);
             const bodyText = `New Lead Details:
 -----------------------------------------
-👤 Name: ${name}
-📞 Phone: ${phone}
-✉️ Email: ${email}
-📍 Location: ${location || 'Not provided'}
+👤 Name: ${data.name}
+📞 Phone: ${data.phone}
+✉️ Email: ${data.email}
+📍 Location: ${data.location || 'Not provided'}
 
 🛠️ Required Services & Quantities:
 -----------------------------------------
@@ -496,14 +697,47 @@ ${servicesText || '  None specified'}
 
 📝 Project Description:
 -----------------------------------------
-${message}`;
+${data.message}`;
+            window.location.href = `mailto:Mathrubhumie@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+        }
 
-            const body = encodeURIComponent(bodyText);
-            
-            // Open user's default email client
-            window.location.href = `mailto:Mathrubhumie@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Show success briefly
+        async function saveLeadToDb(payload) {
+            const res = await fetch(SUPABASE_URL + '/rest/v1/' + LEADS_TABLE, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error('db ' + res.status);
+        }
+
+        quoteForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (document.getElementById('company_website').value) return; // honeypot: bots leave quietly
+
+            const { data, servicesText, rows } = collectLead();
+            setSendState('sending');
+
+            if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+                try {
+                    await saveLeadToDb({
+                        name: data.name, phone: data.phone, email: data.email,
+                        location: data.location || null, services: rows, message: data.message
+                    });
+                    setSendState('sent', 'Request saved! Our team will contact you shortly.');
+                    setTimeout(() => { formSuccessMsg.classList.add('hidden'); }, 5000);
+                    quoteForm.reset();
+                    return;
+                } catch (err) { /* fall through to email — no lead is ever lost */ }
+            }
+
+            sendViaMailto(data, servicesText);
+            setSendState('idle');
+            formSuccessMsg.textContent = 'Request prepared! Opening your email client...';
             formSuccessMsg.classList.remove('hidden');
             setTimeout(() => {
                 formSuccessMsg.classList.add('hidden');
@@ -611,7 +845,7 @@ ${message}`;
             revealEach('#services .mb-16, #services .grid > div, #projects .mb-12, #quote .text-center, #quoteForm, footer > div');
 
             // Gallery images glide in as a staggered row
-            var gal = document.querySelector('#projects .no-scrollbar');
+                var gal = document.querySelector('#projectGal');
             if (gal) {
                 gsap.from(gal.querySelectorAll('img'), {
                     x: 60, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08,
@@ -655,6 +889,135 @@ ${message}`;
             });
 
             window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+        })();
+    </script>
+
+    <script>
+        // --- 5. PRO PACK: CountUp, BlurText, RotatingText, Glare, ClickSpark, ChromaGrid ---
+        (function () {
+            'use strict';
+
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var hasGsap = (typeof gsap !== 'undefined');
+            var hasST = (typeof ScrollTrigger !== 'undefined');
+            if (!hasGsap || reduceMotion) return;
+            if (hasST) { gsap.registerPlugin(ScrollTrigger); }
+
+            // Generic reveals for injected sections
+            if (hasST) {
+                gsap.utils.toArray('.reveal').forEach(function (el) {
+                    gsap.from(el, {
+                        y: 36, opacity: 0, duration: 0.9, ease: 'power3.out',
+                        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+                    });
+                });
+                // BlurText headers (React-Bits BlurText style)
+                gsap.utils.toArray('.blur-text').forEach(function (el) {
+                    gsap.from(el, {
+                        filter: 'blur(14px)', opacity: 0, y: 18, duration: 1.1, ease: 'power3.out',
+                        scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+                    });
+                });
+            }
+
+            // CountUp stats (React-Bits CountUp style)
+            document.querySelectorAll('[data-count]').forEach(function (el) {
+                var end = parseFloat(el.getAttribute('data-count')) || 0;
+                var suf = el.getAttribute('data-suffix') || '';
+                var obj = { v: 0 };
+                var render = function () { el.textContent = Math.round(obj.v).toLocaleString('en-US') + suf; };
+                if (!hasST) { obj.v = end; render(); return; }
+                ScrollTrigger.create({
+                    trigger: el, start: 'top 88%', once: true,
+                    onEnter: function () { gsap.to(obj, { v: end, duration: 2, ease: 'power2.out', onUpdate: render }); }
+                });
+            });
+
+            // Rotating hero words (React-Bits RotatingText style)
+            var words = ['Warehouses', 'Aircraft hangars', 'Factories', 'Cold storages', 'Showrooms'];
+            var rot = document.getElementById('rotWord');
+            var wi = 0;
+            if (rot) {
+                setInterval(function () {
+                    gsap.to(rot, {
+                        y: -14, opacity: 0, duration: 0.35, ease: 'power2.in',
+                        onComplete: function () {
+                            wi = (wi + 1) % words.length;
+                            rot.textContent = words[wi];
+                            gsap.fromTo(rot, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' });
+                        }
+                    });
+                }, 2600);
+            }
+
+            // GlareHover on service cards (React-Bits GlareHover style)
+            document.querySelectorAll('#services .grid > div').forEach(function (card) {
+                card.classList.add('glare');
+                card.addEventListener('mouseenter', function (e) {
+                    var r = card.getBoundingClientRect();
+                    var ang = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI + 90;
+                    card.style.setProperty('--ga', ang + 'deg');
+                    card.classList.add('glare-on');
+                });
+                card.addEventListener('mouseleave', function () { card.classList.remove('glare-on'); });
+            });
+
+            // ClickSpark bursts (React-Bits ClickSpark style)
+            var cv = document.createElement('canvas');
+            cv.id = 'sparkCanvas';
+            document.body.appendChild(cv);
+            var ctx = cv.getContext('2d');
+            var sparks = [];
+            var rafOn = false;
+            function sizeCv() {
+                cv.width = window.innerWidth * window.devicePixelRatio;
+                cv.height = window.innerHeight * window.devicePixelRatio;
+                cv.style.width = window.innerWidth + 'px';
+                cv.style.height = window.innerHeight + 'px';
+                ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+            }
+            sizeCv();
+            window.addEventListener('resize', sizeCv);
+            function burst(x, y) {
+                for (var i = 0; i < 14; i++) {
+                    var a = Math.random() * Math.PI * 2;
+                    var sp = 2 + Math.random() * 4;
+                    sparks.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1, life: 1 });
+                }
+                if (!rafOn) { rafOn = true; requestAnimationFrame(tick); }
+            }
+            function tick() {
+                ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+                sparks = sparks.filter(function (p) { return p.life > 0; });
+                sparks.forEach(function (p) {
+                    p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.life -= 0.02;
+                    ctx.globalAlpha = Math.max(p.life, 0);
+                    ctx.fillStyle = '#0f172a';
+                    ctx.fillRect(p.x, p.y, 2.5, 2.5);
+                });
+                if (sparks.length) { requestAnimationFrame(tick); }
+                else { rafOn = false; ctx.clearRect(0, 0, window.innerWidth, window.innerHeight); }
+            }
+            document.querySelectorAll('[data-magnet], #sendBtn').forEach(function (b) {
+                b.addEventListener('click', function (e) { burst(e.clientX, e.clientY); });
+            });
+
+            // ChromaGrid proximity: color returns near the cursor (React-Bits ChromaGrid style)
+            var grid = document.getElementById('projectGal');
+            if (grid && window.matchMedia('(pointer: fine)').matches) {
+                var imgs = grid.querySelectorAll('img');
+                grid.addEventListener('mousemove', function (e) {
+                    imgs.forEach(function (im) {
+                        var r = im.getBoundingClientRect();
+                        var dx = Math.max(r.left - e.clientX, 0, e.clientX - r.right);
+                        var dy = Math.max(r.top - e.clientY, 0, e.clientY - r.bottom);
+                        im.classList.toggle('lit', Math.hypot(dx, dy) < 150);
+                    });
+                });
+                grid.addEventListener('mouseleave', function () {
+                    imgs.forEach(function (im) { im.classList.remove('lit'); });
+                });
+            }
         })();
     </script>
 </body>
